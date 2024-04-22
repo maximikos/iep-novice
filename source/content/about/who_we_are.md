@@ -14,7 +14,8 @@ authors:
 
 # Who we are
 
-> *Last edited by* <a href=”https://github.com/maximikos“><img src="https://github.com/maximikos.png" alt="GitHub user" title="Max Koslowski" width="40" style="border-radius: 50%" /></a> *on 05/11/2023*
+> *Last edited by* <a href=”https://github.com/maximikos“><img class="image-round" src="https://github.com/maximikos.png" alt="GitHub user" title="Max Koslowski" width="40"/></a> *on 05/11/2023*. 
+*Last review by* --- *on dd/mm/yyyy*.
 
 The world is complex. And here we want to show you how we can account for this complexity and the associated environmental and socio-economic repercussions. Methods such as life cycle assessment and material flow analysis are introduced and applied in many small examples. In addition, actual research insights are provided which are broken down into simple language - as much as this is possible.
 

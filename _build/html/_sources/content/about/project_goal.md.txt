@@ -14,7 +14,8 @@ authors:
 
 # Project goal
 
-> *Last edited by* <a href=”https://github.com/maximikos“><img src="https://github.com/maximikos.png" alt="GitHub user" title="Max Koslowski" width="40" style="border-radius: 50%" /></a> *on 05/11/2023*
+> *Last edit by* <a href=”https://github.com/maximikos“><img class="image-round" src="https://github.com/maximikos.png" alt="GitHub user" title="Max Koslowski" width="40"/></a> *on 05/11/2023*. 
+*Last review by* --- *on dd/mm/yyyy*.
 
 ## TL;DR
 The central idea is to support the outreach of the International Society for Industrial Ecology (ISIE) by providing an online platform that features community-edited and curated material for various experience levels. This material covers industrial ecology theory and research insights. The structure of the website follows preferably what can be achieved with [Jupyter Book](https://jupyterbook.org) (e.g. [Brightway](https://docs.brightway.dev/en/latest/index.html) or [The Turing Way](https://the-turing-way.netlify.app)) or [GitBook](https://www.gitbook.com) (e.g. [The Data Science Interview Book](https://book.thedatascienceinterviewproject.com/)).

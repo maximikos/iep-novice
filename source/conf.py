@@ -20,10 +20,12 @@ needs_sphinx = '5.3.0'
 
 extensions = [
     # core extensions
+    'sphinx.ext.autodoc',
     'sphinx.ext.mathjax',
     'sphinx.ext.viewcode',
     'sphinx.ext.intersphinx',
     'sphinx.ext.extlinks',
+    'sphinx.ext.napoleon',
     'sphinx.ext.inheritance_diagram',
     'sphinxcontrib.bibtex',
     #'sphinx.ext.githubpages',
@@ -119,8 +121,8 @@ html_theme_options = {
 
 # required by html_theme_options: "use_edit_page_button"
 html_context = {
-    "github_user": "brightway-lca",
-    "github_repo": "brightway-documentation",
+    "github_user": "maximikos",
+    "github_repo": "iep-novice",
     "github_version": "main",
     "doc_path": "source",
 }
@@ -132,7 +134,7 @@ html_context = {
 # bibtex Configuration ############################################
 # https://sphinxcontrib-bibtex.readthedocs.io
 
-bibtex_bibfiles = ['refs.bib']
+bibtex_bibfiles = ['references/refs.bib']
 
 # linkcheck Configuration ###############################################
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-the-linkcheck-builder

@@ -136,12 +136,6 @@ html[data-theme="light"] {
     width: 100%;
     min-width: 0px;
   }
-  .support-arviz-img-donate img {
-    display: none;
-  }
-  .support-arviz-img-donate-responsive img {
-    display: block;
-  }
 }
 
 /* -------------------- HOMEPAGE + EXAMPLE GALLERY -------------------- */
@@ -340,4 +334,10 @@ html[data-theme="light"] {
 .sec-texts li span a {
     color: inherit;
     text-decoration: none;
+}
+
+/* -------------------- Images -------------------- */
+
+.image-round {
+  border-radius: 50%;
 }

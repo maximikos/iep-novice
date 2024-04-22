@@ -21,8 +21,4 @@ maxdepth: 3
 history/index
 concepts/index
 methods/index
-structure
-uncertainty
-graph_traversal
-static_and_stochastic_lca
 ```
