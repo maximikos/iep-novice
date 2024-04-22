@@ -85,7 +85,7 @@ html_theme_options = {
     #"announcement": "<p><a href='https://www.d-d-s.ch/schools/may-24/index.html'>REGISTER NOW</a>: Brightway Spring School! 🇨🇦 Québec City (Canada) 🗓️ 20.-24. May 2024</p>",
     # https://pydata-sphinx-theme.readthedocs.io/en/stable/user_guide/version-dropdown.html
     "switcher": {
-        "json_url": "https://raw.githubusercontent.com/maximikos/iep-nov/main/source/_static/switcher.json",
+        "json_url": "https://raw.githubusercontent.com/maximikos/iep-novice/main/source/_static/switcher.json",
         "version_match": version
     },
     # page elements
