@@ -84,7 +84,6 @@ html_sidebars = {
 }
 
 html_theme_options = {
-    #"announcement": "<p><a href='https://www.d-d-s.ch/schools/may-24/index.html'>REGISTER NOW</a>: Brightway Spring School! 🇨🇦 Québec City (Canada) 🗓️ 20.-24. May 2024</p>",
     # https://pydata-sphinx-theme.readthedocs.io/en/stable/user_guide/version-dropdown.html
     "switcher": {
         "json_url": "https://raw.githubusercontent.com/maximikos/iep-novice/main/source/_static/switcher.json",
@@ -148,25 +147,23 @@ linkcheck_exclude_documents = []
 
 notfound_context = {
     'title': 'Page Not Found',
-    'body': '''                                                                                                                                           
-        <h1>🍂 Page Not Found (404)</h1>
-        <p>
-        Oops! It looks like you've stumbled upon a page that's been recycled into the digital abyss.
-        But don't worry, we're all about sustainability here.
-        Why not take a moment to reduce, reuse, and recycle your clicks by heading back to the main page?
-        And remember, every little bit counts in the grand scheme of things.
-        </p>
+    'body': '''                                                                         <h1>🍂 Page Not Found (404)</h1>
+    <p>
+    Oops! It looks like you've stumbled upon a page that's been recycled into the digital abyss.
+    But don't worry, we're all about sustainability here.
+    Why not take a moment to reduce, reuse, and recycle your clicks by heading back to the main page?
+    And remember, every little bit counts in the grand scheme of things.
+    </p>
     ''',
 }
+
+notfound_urls_prefix = '/iep-novice/'
 
 # autoapi Configuration ################################################
 # https://sphinx-autoapi.readthedocs.io/en/latest/reference/config.html#customisation-options
 
 #autoapi_dirs = [
-#    '../brightway2-io/bw2io',
-#    '../brightway2-data/bw2data',
-#    '../brightway2-calc/bw2calc',
-#    '../brightway2-analyzer/bw2analyzer'
+#    '...',
 #]
 
 autoapi_ignore = [

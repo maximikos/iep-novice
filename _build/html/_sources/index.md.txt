@@ -44,9 +44,9 @@ h3:not(#hero h3) {
 <div id="hero">
 
 <div id="hero-left">  <!-- Start Hero Left -->
-  <h2 style="font-size: 60px; font-weight: bold; margin: 2rem auto 0;">Welcome to IEP &#128075</h2>
-  <h3 style="font-weight: bold; margin-top: 0;">The Industrial Ecology Platform for sustainability literacy</h3>
-  <p>We open the box of all-things sustainability to the broader public, including hopefully YOU. So, if you have ever wondered about any of the above or similar questions, you're at the right place! &#129412</p>
+  <h2 style="font-size: 60px; font-weight: bold; margin: 2rem auto 0;">Hello there &#128075</h2>
+  <h3 style="font-weight: bold; margin-top: 0;">Curious about sustainability?</h3>
+  <p>Look no further! We open the box of all-things sustainability to everyone, including hopefully YOU. So, if you have ever wondered about any of the above or similar questions, you're at the right place! &#129412</p>
 
 <div class="homepage-button-container">
   <div class="homepage-button-container-row">
