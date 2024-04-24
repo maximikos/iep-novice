@@ -54,7 +54,7 @@ h3:not(#hero h3) {
       <a href="./examples/index.html" class="homepage-button secondary-button">About us</a>
   </div>
   <div class="homepage-button-container-row">
-      <a href="./api/index.html" class="homepage-button-link">Drop us a message &#x1F48C;</a>
+      <a href="mailto:students@is4ie.org" class="homepage-button-link">Drop us a message &#x1F48C;</a>
   </div>
 </div>
 </div>  <!-- End Hero Left -->

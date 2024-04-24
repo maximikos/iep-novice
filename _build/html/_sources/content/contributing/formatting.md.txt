@@ -1,6 +1,8 @@
 # Formatting Guide
 
-The Brightway Documentation webpage, including the Example Gallery, uses the [MyST markdown format](https://myst-parser.readthedocs.io/en/latest/index.html). _Markdown_ is a is a lightweight markup language (=text-encoding system) for creating formatted text using a plain-text editor. MyST is a dialect of Markdown that supports many visual elements useful in scientific publishing.
+> This page is adapted from the excellent [Brightway documentation](https://docs.brightway.dev). We simply couldn't formulate it better.
+
+The IEP website uses the [MyST markdown format](https://myst-parser.readthedocs.io/en/latest/index.html). _Markdown_ is a lightweight markup language (=text-encoding system) for creating formatted text using a plain-text editor. MyST is a dialect of Markdown that supports many visual elements useful in scientific publishing.
 
 ## Formatting Features
 
@@ -32,7 +34,7 @@ Other functions include [cross-references, footnotes, embedded images, tables, c
 
 ## Reference
 
-For a complete overview of the MyST Markdown syntax, please refer to the MyST Markdown Guide. This will covery all cases you might want to use in your edits to the Brightway Documentation webpage:
+For a complete overview of the MyST Markdown syntax, please refer to the MyST Markdown Guide. This will covery all cases you might want to use in your edits to the IEP website:
 
 - [MyST Markdown Guide](https://myst-parser.readthedocs.io/en/latest/syntax/typography.html)
     - [Typography](https://myst-parser.readthedocs.io/en/latest/syntax/typography.html)

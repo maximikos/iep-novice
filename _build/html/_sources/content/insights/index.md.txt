@@ -17,7 +17,6 @@ Please follow the [Examples Contribution Guide](../contributing/examples.md).
 maxdepth: 3
 hidden: true
 ---
-self
 materials
 sectors
 regions

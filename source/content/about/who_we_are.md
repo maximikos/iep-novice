@@ -22,7 +22,7 @@ The world is complex. And here we want to show you how we can account for this c
 This website is now about to be updated as part of the ISIE website project.
 
 <script src="https://utteranc.es/client.js"
-        repo="maximikos/learn-ie"
+        repo="maximikos/iep-novice"
         issue-term="pathname"
         label="🔮"
         theme="github-light"

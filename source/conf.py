@@ -53,7 +53,7 @@ html_static_path = ['_static']
 templates_path = ['_templates']
 exclude_patterns = ['_build']
 html_theme = "pydata_sphinx_theme"
-html_logo = "_static/logo/nemora_logo_small.png"
+html_logo = "_static/logo/iep_logo_small.png"
 
 suppress_warnings = [
     "myst.header" # suppress warnings of the kind "WARNING: Non-consecutive header level increase; H1 to H3"
@@ -101,7 +101,7 @@ html_theme_options = {
     "icon_links": [
         {
             "name": "GitHub",
-            "url": "https://github.com/maximikos",
+            "url": "https://github.com/maximikos/iep-novice",
             "icon": "fa-brands fa-github",
             "type": "fontawesome",
         },
@@ -113,8 +113,8 @@ html_theme_options = {
     "navigation_with_keys": True,
     #"logo": {
     #    "text": "IEP",
-    #    "image_light": "nemora_logo.png",
-    #    "image_dark": "logo/nemora_logo_small.png"
+    #    "image_light": "iep_logo.png",
+    #    "image_dark": "logo/iep_logo_small.png"
     #},
 }
 

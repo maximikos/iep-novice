@@ -1,6 +1,5 @@
 # Materials
 
-
 ```{admonition} Work in Progress!
 :class: important
 More examples will be added over time...
