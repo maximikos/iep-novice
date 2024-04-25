@@ -50,8 +50,8 @@ h3:not(#hero h3) {
 
 <div class="homepage-button-container">
   <div class="homepage-button-container-row">
-      <a href="./getting_started/index.html" class="homepage-button primary-button">Get Started</a>
-      <a href="./examples/index.html" class="homepage-button secondary-button">About us</a>
+      <a href="./get_started/index.html" class="homepage-button primary-button">Get Started</a>
+      <a href="./about/index.html" class="homepage-button secondary-button">About us</a>
   </div>
   <div class="homepage-button-container-row">
       <a href="mailto:students@is4ie.org" class="homepage-button-link">Drop us a message &#x1F48C;</a>
