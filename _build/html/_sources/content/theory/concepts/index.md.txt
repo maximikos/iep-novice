@@ -1,6 +1,6 @@
 # Concepts
 
-Something about methods
+Something about concepts relevant to industrial ecology.
 
 ```{toctree}
 ---
