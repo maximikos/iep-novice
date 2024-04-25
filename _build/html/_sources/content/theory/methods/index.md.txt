@@ -1,12 +1,11 @@
 # Methods
 
-Something about methods
+Something about methods, including LCA, MFA, IO...
 
 ```{toctree}
 ---
 hidden: true
 maxdepth: 4
 ---
-io
 lca
 ```

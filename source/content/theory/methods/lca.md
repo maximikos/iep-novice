@@ -1,254 +1,85 @@
-# LCA
+# Life Cycle Assessment (LCA)
 
-## Specifying a functional unit
+> *Last edit by* <a href=”https://www.ntnu.edu/employees/elisa.p.valles“><img class="image-round" src="https://backends.it.ntnu.no/user-profile-service/rest/files/cfb50733-b529-3f06-bd2e-e9f799f85690" alt="GitHub user" title="Elisa Pastor-VAlles" width="40"/></a> *on 15/04/2024*. 
+*Last review by* --- *on dd/mm/yyyy*.
 
-The functional unit for any LCA calculation is a dictionary of keys and
-amounts:
+Life Cycle Assessment (LCA) is a methodology to understand the impact that the production of the objects or services around us have on the environment. It originated after growing concerns of environmental issues due to the publication of “The Limits to Growth,” the oil crisis, disasters at Bhopal, Chernobyl, and Exxon Valdez, to mention a few examples.
 
-``` python
-{
-    ("a database", "the answer"): 42,
-    ("a database", "pi"): 3.14159265358979
-}
-```
+<figure>
+    <img src="../../../_static/images/Limits_to_growth.jpg"
+         alt="Limits to growth"
+         class="content_center">
+    <figcaption>The Limits to Growth. Meadows et al. (1972).</figcaption>
+</figure>
 
-However, you can also use a `Activity` proxy:
+The name of Life Cycle Assessment arises from the fact that every object (or service) has an impact associated with a supply chain. For instance, in the case of a paper clip, it requires an input of materials and energy that are consumed, e.g., to produce the steel or energy to form the coiling. The impacts produced by the supply chain of a product or service are defined as upstream impacts.
 
-``` python
-In [1]: from brightway2 import *
+<figure>
+    <img src="../../../_static/images/paper_supply_chain.png"
+         alt="Paper supply chain"
+         class="content_center">
+    <figcaption>Supply chain of a paper clip. Image credit: lcatextbook.com.</figcaption>
+</figure>
 
-In [2]: activity = Database("ecoinvent 3.2 cutoff").random()
+Similarly, products or services also account for impacts after the product/service has been produced. The distribution, use, and disposal or recycling of materials cause other impacts associated with the product or service. These are defined as downstream impacts.
 
-In [3]: type(activity), activity
-Out[3]:
-(bw2data.backends.peewee.proxies.Activity,
- 'quicklime production, milled, packed' (kilogram, CH, None))
+<figure>
+    <img src="../../../_static/images/physical_product_LCA.png"
+         alt="Physical LCA"
+         class="content_center">
+    <figcaption>Overview of a Physical Product Life Cycle. Image credit: lcatextbook.com.</figcaption>
+</figure>
 
-In [4]: lca = LCA({activity: 1})
+As we have just seen, LCA methodology analyses the impact of the whole system of a product or service without overlooking Life Cycle Stages. It also studies a broad range of environmental impacts, avoiding the “tunnel vision” effect, e.g., when climate change is regarded as the only important environmental impact.
 
-In [5]: lca.demand
-Out[5]: {'quicklime production, milled, packed' (kilogram, CH, None): 1}
-```
+**Avoid solving a problem by creating a problem:**
 
-How does this work? It is quite simple - the `Activity` proxy knows how
-to pretend to be a key tuple:
+<figure>
+    <img src="../../../_static/images/problem.png"
+         alt="problem"
+         class="content_center">
+    <figcaption>Source: <a href="https://www.greenco.in/casestudy/How%20to%20Use%20LCA%20in%20Business%20-%20PE%20INternational%20Mr%20MarkBinder-2014.pdf">GreenCo</a>.</figcaption>
+</figure>
 
-``` python
-In [7]: activity[0], activity[1]
-Out[7]: ('ecoinvent 3.2 cutoff', 'ab2f7a551a06a59de9191065128233e4')
+<figure>
+    <img src="../../../_static/images/tunnel_vision.jpg"
+         alt="tunnel vision"
+         class="content_center">
+    <figcaption>Holistic environmental metrics > carbon-centric view.</figcaption>
+</figure>
 
-In [8]: activity == ('ecoinvent 3.2 cutoff', 'ab2f7a551a06a59de9191065128233e4')
-Out[8]: True
-```
+<figure>
+    <img src="../../../_static/images/ethanol.png"
+         alt="ethanol"
+         class="content_center">
+    <figcaption>Ironic Harvest: Ethanol's Green Sheen Masks an Oilier Reality. Cartoon by Andy Singer.</figcaption>
+</figure>
 
-This is an instance of [duck
-typing](https://en.wikipedia.org/wiki/Duck_typing) - if it walks like a
-duck and quacks like a duck, then we can treat it like a duck.
+LCA allows us to answer the following questions:
 
-If you are interested in the details, see how
-`bw2data.proxies.ActivityProxyBase` defines `__getitem__` and other `__`
-magic methods.
+- Which course of action is more environmentally friendly?
+- What are the hotspots of impact for the system of analysis? Where should we focus our efforts to reduce the impacts?
 
-## Turning processed data arrays in matrices {#building-matrices}
+While the first LCA is considered to be developed by Coca Cola in 1969 on beverage packaging, it was not until 1991 that the term LCA was defined, and until 1997 that the first standard for LCA methodology was developed (ISO14040). Today, this family of standards governs the principles, framework, requirements, and guidelines to perform and interpret LCAs.
 
-A parameter array is a NumPy [structured or record
-array](http://docs.scipy.org/doc/numpy/user/basics.rec.html), where each
-column has a label and data type. Here is an sample of the parameter
-array for the US LCI:
+## Basics of LCA calculations
 
-  input   output   row          col          type   amount
-  ------- -------- ------------ ------------ ------ --------
-  9829    9829     4294967295   4294967295   0      1.0
-  9708    9708     4294967295   4294967295   0      1.0
-  9633    9633     4294967295   4294967295   0      1.0
-  9276    9276     4294967295   4294967295   0      3.0999
-  8778    8778     4294967295   4294967295   0      1.0
-  9349    9349     4294967295   4294967295   0      1000.0
-  5685    9349     4294967295   4294967295   2      14.895
-  9516    9349     4294967295   4294967295   1      1032.7
-  9433    9349     4294967295   4294967295   1      4.4287
-  8838    9349     4294967295   4294967295   1      1.5490
+Inputs flows (such as materials and energy) and outputs (for instance, emissions or solid wastes) cause an environmental impact. 
 
-There are also some columns for uncertainty information, but these would
-only be a distraction for now. The complete spec for the uncertainty
-fields is given in the [stats_arrays
-documentation](http://stats-arrays.readthedocs.io/en/latest/).
+<figure>
+    <img src="../../../_static/images/environmental_impacts.png"
+         alt="environmental impacts"
+         class="content_center">
+    <figcaption>Image by: Elisa Pastor-Valles.</figcaption>
+</figure>
 
-We notice several things:
+To calculate this environmental impact, the ISO14040 follows the following phases:
 
-> -   Both the `input` and `output` columns have numbers, but we don\'t
->     know what they mean yet
-> -   Both the `row` and `col` columns are filled with a large number
-> -   The `type` column has only a few values, but they are also
->     mysterious
-> -   The `amount` column is the only one that seems reasonable, and
->     gives the values that should be inserted into the matrix
+<figure>
+    <img src="../../../_static/images/LCA_phases.png"
+         alt="lca phases"
+         class="content_center">
+    <figcaption>Image by: Elisa Pastor-Valles.</figcaption>
+</figure>
 
-### Input and Output
-
-The `input` and `output` columns gives values for biosphere flows or
-transforming activity data sets. The `mapping`
-is used to translate keys like `("Douglas Adams", 42)` into
-integer values. So, each mapping number uniquely identifies an activity
-dataset.
-
-If the `input` and `output` values are the same, then this is a
-production exchange - it describes how much product is produced by the
-transforming activity dataset.
-
-::: warning
-::: title
-Warning
-:::
-
-Integer mapping ids are not transferable from machine to machine or
-installation to installation, as the order of insertion (and hence the
-integer id) is more or less at random. Always `.process()` datasets on a
-new machine.
-:::
-
-### Rows and columns
-
-The `row` and `col` columns have the data type *unsigned integer, 32
-bit*, and the maximum value is therefore $2^{32} - 1$, i.e. 4294967295.
-This is just a dummy value telling Brightway2 to insert better data.
-
-The method `MatrixBuilder.build_dictionary` is used to take `input` and
-`output` values, respectively, and figure out which rows and columns
-they correspond to. The actual code is succinct - only one line - but
-what it does is:
-
-> 1.  Get all unique values, as each value will appear multiple times
-> 2.  Sort these values
-> 3.  Give them integer indices, starting with zero
-
-For our example parameter array, the dictionary from `input` values to
-`row` would be:
-
-``` python
-{5685: 0,
- 8778: 1,
- 8838: 2,
- 9276: 3,
- 9349: 4,
- 9433: 5,
- 9516: 6,
- 9633: 7,
- 9708: 8,
- 9829: 9}
-```
-
-And the dictionary from `output` to `col` would be:
-
-``` python
-{8778: 0,
- 9276: 1,
- 9349: 2,
- 9633: 3,
- 9708: 4,
- 9829: 5}
-```
-
-The method `MatrixBuilder.add_matrix_indices` would replace the
-4294967295 values with dictionary values based on `input` and `output`.
-At this point, we have enough to build a sparse matrix using
-`MatrixBuilder.build_matrix`:
-
-  row   col   amount
-  ----- ----- --------
-  9     5     1.0
-  8     4     1.0
-  7     3     1.0
-  3     1     3.0999
-  1     0     1.0
-  4     2     1000.0
-  0     2     14.895
-  6     2     1032.7
-  5     2     4.4287
-  2     2     1.5490
-
-Indeed, the [coordinate (coo)
-matrix](http://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.coo_matrix.html)
-takes as inputs exactly the row and column indices, and the values to
-insert.
-
-Of course, there are some details for specific matrices - technosphere
-matrices need to be square, and should have ones by default on the
-diagonal, etc. etc., but this is the general idea.
-
-### Types
-
-The `type` column indicates whether a value should be in the
-technosphere or biosphere matrix: `0` is a transforming activity
-production amount, `1` is a technosphere exchange, and `2` is a
-biosphere exchange.
-
-
-
-## Brightway2 LCA Reports
-
-
-The Brightway2 report data format is evolving, and this section should
-not be understood as definitive.
-:::
-
-LCA reports calculated with `bw2analyzer.report.SerializedLCAReport` are
-written as a JSON file to disk. It has the following data format:
-
-``` python
-{
-    "monte carlo": {
-        "statistics": {
-            "interval": [lower, upper values],
-            "median": median,
-            "mean": mean
-        },
-        "smoothed": [  ## This is smoothed values for drawing empirical PDF
-            [x, y],
-        ],
-        "histogram": [  ## This are point coordinates for each point when drawing histogram bins
-            [x, y],
-        ]
-    },
-    "score": LCA score,
-    "activity": [
-        [name, amount, unit],
-    ],
-    "contribution": {
-        "hinton": {
-            "xlabels": [
-                label,
-            ],
-            "ylabels": [
-                label,
-            ],
-            "total": LCA score,
-            "results": [
-                [x index, y index, score], ## See hinton JS implementation in bw2ui source code
-            ],
-        },
-        "treemap": {
-            "size:" LCA score,
-            "name": "LCA result",
-            "children": [
-                {
-                "name": activity name,
-                "size": activity LCA score
-                },
-            ]
-        }
-        "herfindahl": herfindahl score,
-        "concentration": concentration score
-    },
-    "method": {
-        "name": method name,
-        "unit": method unit
-    },
-    "metadata": {
-        "version": report data format version number (this is 1),
-        "type": "Brightway2 serialized LCA report",
-        "uuid": the UUID of this report,
-        "online": URL where this report can be accessed. Optional.
-    }
-}
-```
+Today – LCA is used in many applications: product development, marketing, production processes, waste management, companies and policy makers, research...

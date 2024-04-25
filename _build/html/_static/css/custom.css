@@ -341,3 +341,10 @@ html[data-theme="light"] {
 .image-round {
   border-radius: 50%;
 }
+
+.content_center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+}

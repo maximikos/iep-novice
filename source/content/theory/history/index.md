@@ -1,6 +1,6 @@
 # History
 
-Something about methods
+Something about the history of industrial ecology and sustainability science
 
 ```{toctree}
 ---

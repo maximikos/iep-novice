@@ -7,7 +7,7 @@ Something about methods
 hidden: true
 maxdepth: 4
 ---
-pb
+planetary_boundaries
 sem
 sustainable_development
 ```

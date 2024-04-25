@@ -34,9 +34,9 @@ h3:not(#hero h3) {
         <span class="first-text">What is</span>
         <ul class="sec-texts">
             <li><span><a href="content/theory/methods/lca.html">life cycle assessment?</a></span></li>
-            <li><span><a href="content/theory/methods/lca.html">Norway's carbon footprint?</a></span></li>
-            <li><span><a href="content/theory/methods/lca.html">socio-economic metabolism?</a></span></li>
-            <li><span><a href="content/theory/methods/lca.html">the impact of recycling?</a></span></li>
+            <li><span><a href="..">Norway's carbon footprint?</a></span></li>
+            <li><span><a href="content/theory/concepts/sem.html">socio-economic metabolism?</a></span></li>
+            <li><span><a href="..">the impact of recycling?</a></span></li>
         </ul>
     </div>
 </div>

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" sizes="100x100" href="../../../_static/logo/iep_favicon.ico" type="image/x-icon">
-    <title>LCA &#8212; IEP  documentation</title>
+    <title>Life Cycle Assessment (LCA) &#8212; IEP  documentation</title>
   
   
   
@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=80d638d1" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=122e191b" />
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -47,8 +47,6 @@
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../../_static/design-tabs.js?v=36754332"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'content/theory/methods/lca';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.15.2';
@@ -59,7 +57,7 @@
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Insights" href="../../insights/index.html" />
-    <link rel="prev" title="Import and Export" href="io.html" />
+    <link rel="prev" title="Methods" href="index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -398,8 +396,7 @@ document.write(`
 <li class="toctree-l1"><a class="reference internal" href="../history/index.html">History</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../concepts/index.html">Concepts</a></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Methods</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="io.html">Import and Export</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">LCA</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Life Cycle Assessment (LCA)</a></li>
 </ul>
 </li>
 </ul>
@@ -445,7 +442,7 @@ document.write(`
     
     <li class="breadcrumb-item"><a href="index.html" class="nav-link">Methods</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page">LCA</li>
+    <li class="breadcrumb-item active" aria-current="page">Life Cycle...</li>
   </ul>
 </nav>
 </div>
@@ -462,234 +459,76 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="lca">
-<h1>LCA<a class="headerlink" href="#lca" title="Link to this heading">#</a></h1>
-<section id="specifying-a-functional-unit">
-<h2>Specifying a functional unit<a class="headerlink" href="#specifying-a-functional-unit" title="Link to this heading">#</a></h2>
-<p>The functional unit for any LCA calculation is a dictionary of keys and
-amounts:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-    <span class="p">(</span><span class="s2">&quot;a database&quot;</span><span class="p">,</span> <span class="s2">&quot;the answer&quot;</span><span class="p">):</span> <span class="mi">42</span><span class="p">,</span>
-    <span class="p">(</span><span class="s2">&quot;a database&quot;</span><span class="p">,</span> <span class="s2">&quot;pi&quot;</span><span class="p">):</span> <span class="mf">3.14159265358979</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>However, you can also use a <code class="docutils literal notranslate"><span class="pre">Activity</span></code> proxy:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="kn">from</span> <span class="nn">brightway2</span> <span class="kn">import</span> <span class="o">*</span>
-
-<span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="n">activity</span> <span class="o">=</span> <span class="n">Database</span><span class="p">(</span><span class="s2">&quot;ecoinvent 3.2 cutoff&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>
-
-<span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="nb">type</span><span class="p">(</span><span class="n">activity</span><span class="p">),</span> <span class="n">activity</span>
-<span class="n">Out</span><span class="p">[</span><span class="mi">3</span><span class="p">]:</span>
-<span class="p">(</span><span class="n">bw2data</span><span class="o">.</span><span class="n">backends</span><span class="o">.</span><span class="n">peewee</span><span class="o">.</span><span class="n">proxies</span><span class="o">.</span><span class="n">Activity</span><span class="p">,</span>
- <span class="s1">&#39;quicklime production, milled, packed&#39;</span> <span class="p">(</span><span class="n">kilogram</span><span class="p">,</span> <span class="n">CH</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
-
-<span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="n">lca</span> <span class="o">=</span> <span class="n">LCA</span><span class="p">({</span><span class="n">activity</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
-
-<span class="n">In</span> <span class="p">[</span><span class="mi">5</span><span class="p">]:</span> <span class="n">lca</span><span class="o">.</span><span class="n">demand</span>
-<span class="n">Out</span><span class="p">[</span><span class="mi">5</span><span class="p">]:</span> <span class="p">{</span><span class="s1">&#39;quicklime production, milled, packed&#39;</span> <span class="p">(</span><span class="n">kilogram</span><span class="p">,</span> <span class="n">CH</span><span class="p">,</span> <span class="kc">None</span><span class="p">):</span> <span class="mi">1</span><span class="p">}</span>
-</pre></div>
-</div>
-<p>How does this work? It is quite simple - the <code class="docutils literal notranslate"><span class="pre">Activity</span></code> proxy knows how
-to pretend to be a key tuple:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">7</span><span class="p">]:</span> <span class="n">activity</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">activity</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">Out</span><span class="p">[</span><span class="mi">7</span><span class="p">]:</span> <span class="p">(</span><span class="s1">&#39;ecoinvent 3.2 cutoff&#39;</span><span class="p">,</span> <span class="s1">&#39;ab2f7a551a06a59de9191065128233e4&#39;</span><span class="p">)</span>
-
-<span class="n">In</span> <span class="p">[</span><span class="mi">8</span><span class="p">]:</span> <span class="n">activity</span> <span class="o">==</span> <span class="p">(</span><span class="s1">&#39;ecoinvent 3.2 cutoff&#39;</span><span class="p">,</span> <span class="s1">&#39;ab2f7a551a06a59de9191065128233e4&#39;</span><span class="p">)</span>
-<span class="n">Out</span><span class="p">[</span><span class="mi">8</span><span class="p">]:</span> <span class="kc">True</span>
-</pre></div>
-</div>
-<p>This is an instance of <a class="reference external" href="https://en.wikipedia.org/wiki/Duck_typing">duck
-typing</a> - if it walks like a
-duck and quacks like a duck, then we can treat it like a duck.</p>
-<p>If you are interested in the details, see how
-<code class="docutils literal notranslate"><span class="pre">bw2data.proxies.ActivityProxyBase</span></code> defines <code class="docutils literal notranslate"><span class="pre">__getitem__</span></code> and other <code class="docutils literal notranslate"><span class="pre">__</span></code>
-magic methods.</p>
-</section>
-<section id="turning-processed-data-arrays-in-matrices-building-matrices">
-<h2>Turning processed data arrays in matrices {#building-matrices}<a class="headerlink" href="#turning-processed-data-arrays-in-matrices-building-matrices" title="Link to this heading">#</a></h2>
-<p>A parameter array is a NumPy <a class="reference external" href="http://docs.scipy.org/doc/numpy/user/basics.rec.html">structured or record
-array</a>, where each
-column has a label and data type. Here is an sample of the parameter
-array for the US LCI:</p>
-<p>input   output   row          col          type   amount</p>
-<hr class="docutils" />
-<p>9829    9829     4294967295   4294967295   0      1.0
-9708    9708     4294967295   4294967295   0      1.0
-9633    9633     4294967295   4294967295   0      1.0
-9276    9276     4294967295   4294967295   0      3.0999
-8778    8778     4294967295   4294967295   0      1.0
-9349    9349     4294967295   4294967295   0      1000.0
-5685    9349     4294967295   4294967295   2      14.895
-9516    9349     4294967295   4294967295   1      1032.7
-9433    9349     4294967295   4294967295   1      4.4287
-8838    9349     4294967295   4294967295   1      1.5490</p>
-<p>There are also some columns for uncertainty information, but these would
-only be a distraction for now. The complete spec for the uncertainty
-fields is given in the <a class="reference external" href="http://stats-arrays.readthedocs.io/en/latest/">stats_arrays
-documentation</a>.</p>
-<p>We notice several things:</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="life-cycle-assessment-lca">
+<h1>Life Cycle Assessment (LCA)<a class="headerlink" href="#life-cycle-assessment-lca" title="Link to this heading">#</a></h1>
 <blockquote>
-<div><ul class="simple">
-<li><p>Both the <code class="docutils literal notranslate"><span class="pre">input</span></code> and <code class="docutils literal notranslate"><span class="pre">output</span></code> columns have numbers, but we don’t
-know what they mean yet</p></li>
-<li><p>Both the <code class="docutils literal notranslate"><span class="pre">row</span></code> and <code class="docutils literal notranslate"><span class="pre">col</span></code> columns are filled with a large number</p></li>
-<li><p>The <code class="docutils literal notranslate"><span class="pre">type</span></code> column has only a few values, but they are also
-mysterious</p></li>
-<li><p>The <code class="docutils literal notranslate"><span class="pre">amount</span></code> column is the only one that seems reasonable, and
-gives the values that should be inserted into the matrix</p></li>
+<div><p><em>Last edit by</em> <a href=”https://www.ntnu.edu/employees/elisa.p.valles“><a class="image-round reference internal" href="https://backends.it.ntnu.no/user-profile-service/rest/files/cfb50733-b529-3f06-bd2e-e9f799f85690"><img alt="GitHub user" class="image-round" src="https://backends.it.ntnu.no/user-profile-service/rest/files/cfb50733-b529-3f06-bd2e-e9f799f85690" style="width: 40px;" /></a></a> <em>on 15/04/2024</em>.
+<em>Last review by</em> — <em>on dd/mm/yyyy</em>.</p>
+</div></blockquote>
+<p>Life Cycle Assessment (LCA) is a methodology to understand the impact that the production of the objects or services around us have on the environment. It originated after growing concerns of environmental issues due to the publication of “The Limits to Growth,” the oil crisis, disasters at Bhopal, Chernobyl, and Exxon Valdez, to mention a few examples.</p>
+<figure>
+    <img src="../../../_static/images/Limits_to_growth.jpg"
+         alt="Limits to growth"
+         class="content_center">
+    <figcaption>The Limits to Growth. Meadows et al. (1972).</figcaption>
+</figure>
+<p>The name of Life Cycle Assessment arises from the fact that every object (or service) has an impact associated with a supply chain. For instance, in the case of a paper clip, it requires an input of materials and energy that are consumed, e.g., to produce the steel or energy to form the coiling. The impacts produced by the supply chain of a product or service are defined as upstream impacts.</p>
+<figure>
+    <img src="../../../_static/images/paper_supply_chain.png"
+         alt="Paper supply chain"
+         class="content_center">
+    <figcaption>Supply chain of a paper clip. Image credit: lcatextbook.com.</figcaption>
+</figure>
+<p>Similarly, products or services also account for impacts after the product/service has been produced. The distribution, use, and disposal or recycling of materials cause other impacts associated with the product or service. These are defined as downstream impacts.</p>
+<figure>
+    <img src="../../../_static/images/physical_product_LCA.png"
+         alt="Physical LCA"
+         class="content_center">
+    <figcaption>Overview of a Physical Product Life Cycle. Image credit: lcatextbook.com.</figcaption>
+</figure>
+<p>As we have just seen, LCA methodology analyses the impact of the whole system of a product or service without overlooking Life Cycle Stages. It also studies a broad range of environmental impacts, avoiding the “tunnel vision” effect, e.g., when climate change is regarded as the only important environmental impact.</p>
+<p><strong>Avoid solving a problem by creating a problem:</strong></p>
+<figure>
+    <img src="../../../_static/images/problem.png"
+         alt="problem"
+         class="content_center">
+    <figcaption>Source: <a href="https://www.greenco.in/casestudy/How%20to%20Use%20LCA%20in%20Business%20-%20PE%20INternational%20Mr%20MarkBinder-2014.pdf">GreenCo</a>.</figcaption>
+</figure>
+<figure>
+    <img src="../../../_static/images/tunnel_vision.jpg"
+         alt="tunnel vision"
+         class="content_center">
+    <figcaption>Holistic environmental metrics > carbon-centric view.</figcaption>
+</figure>
+<figure>
+    <img src="../../../_static/images/ethanol.png"
+         alt="ethanol"
+         class="content_center">
+    <figcaption>Ironic Harvest: Ethanol's Green Sheen Masks an Oilier Reality. Cartoon by Andy Singer.</figcaption>
+</figure>
+<p>LCA allows us to answer the following questions:</p>
+<ul class="simple">
+<li><p>Which course of action is more environmentally friendly?</p></li>
+<li><p>What are the hotspots of impact for the system of analysis? Where should we focus our efforts to reduce the impacts?</p></li>
 </ul>
-</div></blockquote>
-<section id="input-and-output">
-<h3>Input and Output<a class="headerlink" href="#input-and-output" title="Link to this heading">#</a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">input</span></code> and <code class="docutils literal notranslate"><span class="pre">output</span></code> columns gives values for biosphere flows or
-transforming activity data sets. The <code class="docutils literal notranslate"><span class="pre">mapping</span></code>
-is used to translate keys like <code class="docutils literal notranslate"><span class="pre">(&quot;Douglas</span> <span class="pre">Adams&quot;,</span> <span class="pre">42)</span></code> into
-integer values. So, each mapping number uniquely identifies an activity
-dataset.</p>
-<p>If the <code class="docutils literal notranslate"><span class="pre">input</span></code> and <code class="docutils literal notranslate"><span class="pre">output</span></code> values are the same, then this is a
-production exchange - it describes how much product is produced by the
-transforming activity dataset.</p>
-<div class="warning docutils">
-<div class="title docutils">
-<p>Warning</p>
-</div>
-</div>
-<p>Integer mapping ids are not transferable from machine to machine or
-installation to installation, as the order of insertion (and hence the
-integer id) is more or less at random. Always <code class="docutils literal notranslate"><span class="pre">.process()</span></code> datasets on a
-new machine.</p>
-<div class="docutils">
-<h3 class="rubric" id="rows-and-columns">Rows and columns</h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">row</span></code> and <code class="docutils literal notranslate"><span class="pre">col</span></code> columns have the data type <em>unsigned integer, 32
-bit</em>, and the maximum value is therefore <span class="math notranslate nohighlight">\(2^{32} - 1\)</span>, i.e. 4294967295.
-This is just a dummy value telling Brightway2 to insert better data.</p>
-<p>The method <code class="docutils literal notranslate"><span class="pre">MatrixBuilder.build_dictionary</span></code> is used to take <code class="docutils literal notranslate"><span class="pre">input</span></code> and
-<code class="docutils literal notranslate"><span class="pre">output</span></code> values, respectively, and figure out which rows and columns
-they correspond to. The actual code is succinct - only one line - but
-what it does is:</p>
-<blockquote>
-<div><ol class="arabic simple">
-<li><p>Get all unique values, as each value will appear multiple times</p></li>
-<li><p>Sort these values</p></li>
-<li><p>Give them integer indices, starting with zero</p></li>
-</ol>
-</div></blockquote>
-<p>For our example parameter array, the dictionary from <code class="docutils literal notranslate"><span class="pre">input</span></code> values to
-<code class="docutils literal notranslate"><span class="pre">row</span></code> would be:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="mi">5685</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
- <span class="mi">8778</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
- <span class="mi">8838</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
- <span class="mi">9276</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
- <span class="mi">9349</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
- <span class="mi">9433</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
- <span class="mi">9516</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span>
- <span class="mi">9633</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span>
- <span class="mi">9708</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
- <span class="mi">9829</span><span class="p">:</span> <span class="mi">9</span><span class="p">}</span>
-</pre></div>
-</div>
-<p>And the dictionary from <code class="docutils literal notranslate"><span class="pre">output</span></code> to <code class="docutils literal notranslate"><span class="pre">col</span></code> would be:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="mi">8778</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
- <span class="mi">9276</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
- <span class="mi">9349</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
- <span class="mi">9633</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
- <span class="mi">9708</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
- <span class="mi">9829</span><span class="p">:</span> <span class="mi">5</span><span class="p">}</span>
-</pre></div>
-</div>
-<p>The method <code class="docutils literal notranslate"><span class="pre">MatrixBuilder.add_matrix_indices</span></code> would replace the
-4294967295 values with dictionary values based on <code class="docutils literal notranslate"><span class="pre">input</span></code> and <code class="docutils literal notranslate"><span class="pre">output</span></code>.
-At this point, we have enough to build a sparse matrix using
-<code class="docutils literal notranslate"><span class="pre">MatrixBuilder.build_matrix</span></code>:</p>
-<p>row   col   amount</p>
-<hr class="docutils" />
-<p>9     5     1.0
-8     4     1.0
-7     3     1.0
-3     1     3.0999
-1     0     1.0
-4     2     1000.0
-0     2     14.895
-6     2     1032.7
-5     2     4.4287
-2     2     1.5490</p>
-<p>Indeed, the <a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.coo_matrix.html">coordinate (coo)
-matrix</a>
-takes as inputs exactly the row and column indices, and the values to
-insert.</p>
-<p>Of course, there are some details for specific matrices - technosphere
-matrices need to be square, and should have ones by default on the
-diagonal, etc. etc., but this is the general idea.</p>
-<h3 class="rubric" id="types">Types</h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">type</span></code> column indicates whether a value should be in the
-technosphere or biosphere matrix: <code class="docutils literal notranslate"><span class="pre">0</span></code> is a transforming activity
-production amount, <code class="docutils literal notranslate"><span class="pre">1</span></code> is a technosphere exchange, and <code class="docutils literal notranslate"><span class="pre">2</span></code> is a
-biosphere exchange.</p>
-<h2 class="rubric" id="brightway2-lca-reports">Brightway2 LCA Reports</h2>
-<p>The Brightway2 report data format is evolving, and this section should
-not be understood as definitive.</p>
-</div>
-<p>LCA reports calculated with <code class="docutils literal notranslate"><span class="pre">bw2analyzer.report.SerializedLCAReport</span></code> are
-written as a JSON file to disk. It has the following data format:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-    <span class="s2">&quot;monte carlo&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s2">&quot;statistics&quot;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s2">&quot;interval&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">lower</span><span class="p">,</span> <span class="n">upper</span> <span class="n">values</span><span class="p">],</span>
-            <span class="s2">&quot;median&quot;</span><span class="p">:</span> <span class="n">median</span><span class="p">,</span>
-            <span class="s2">&quot;mean&quot;</span><span class="p">:</span> <span class="n">mean</span>
-        <span class="p">},</span>
-        <span class="s2">&quot;smoothed&quot;</span><span class="p">:</span> <span class="p">[</span>  <span class="c1">## This is smoothed values for drawing empirical PDF</span>
-            <span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">],</span>
-        <span class="p">],</span>
-        <span class="s2">&quot;histogram&quot;</span><span class="p">:</span> <span class="p">[</span>  <span class="c1">## This are point coordinates for each point when drawing histogram bins</span>
-            <span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">],</span>
-        <span class="p">]</span>
-    <span class="p">},</span>
-    <span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="n">LCA</span> <span class="n">score</span><span class="p">,</span>
-    <span class="s2">&quot;activity&quot;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="p">[</span><span class="n">name</span><span class="p">,</span> <span class="n">amount</span><span class="p">,</span> <span class="n">unit</span><span class="p">],</span>
-    <span class="p">],</span>
-    <span class="s2">&quot;contribution&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s2">&quot;hinton&quot;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s2">&quot;xlabels&quot;</span><span class="p">:</span> <span class="p">[</span>
-                <span class="n">label</span><span class="p">,</span>
-            <span class="p">],</span>
-            <span class="s2">&quot;ylabels&quot;</span><span class="p">:</span> <span class="p">[</span>
-                <span class="n">label</span><span class="p">,</span>
-            <span class="p">],</span>
-            <span class="s2">&quot;total&quot;</span><span class="p">:</span> <span class="n">LCA</span> <span class="n">score</span><span class="p">,</span>
-            <span class="s2">&quot;results&quot;</span><span class="p">:</span> <span class="p">[</span>
-                <span class="p">[</span><span class="n">x</span> <span class="n">index</span><span class="p">,</span> <span class="n">y</span> <span class="n">index</span><span class="p">,</span> <span class="n">score</span><span class="p">],</span> <span class="c1">## See hinton JS implementation in bw2ui source code</span>
-            <span class="p">],</span>
-        <span class="p">},</span>
-        <span class="s2">&quot;treemap&quot;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s2">&quot;size:&quot;</span> <span class="n">LCA</span> <span class="n">score</span><span class="p">,</span>
-            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;LCA result&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;children&quot;</span><span class="p">:</span> <span class="p">[</span>
-                <span class="p">{</span>
-                <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">activity</span> <span class="n">name</span><span class="p">,</span>
-                <span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="n">activity</span> <span class="n">LCA</span> <span class="n">score</span>
-                <span class="p">},</span>
-            <span class="p">]</span>
-        <span class="p">}</span>
-        <span class="s2">&quot;herfindahl&quot;</span><span class="p">:</span> <span class="n">herfindahl</span> <span class="n">score</span><span class="p">,</span>
-        <span class="s2">&quot;concentration&quot;</span><span class="p">:</span> <span class="n">concentration</span> <span class="n">score</span>
-    <span class="p">},</span>
-    <span class="s2">&quot;method&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">method</span> <span class="n">name</span><span class="p">,</span>
-        <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="n">method</span> <span class="n">unit</span>
-    <span class="p">},</span>
-    <span class="s2">&quot;metadata&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="n">report</span> <span class="n">data</span> <span class="nb">format</span> <span class="n">version</span> <span class="n">number</span> <span class="p">(</span><span class="n">this</span> <span class="ow">is</span> <span class="mi">1</span><span class="p">),</span>
-        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Brightway2 serialized LCA report&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;uuid&quot;</span><span class="p">:</span> <span class="n">the</span> <span class="n">UUID</span> <span class="n">of</span> <span class="n">this</span> <span class="n">report</span><span class="p">,</span>
-        <span class="s2">&quot;online&quot;</span><span class="p">:</span> <span class="n">URL</span> <span class="n">where</span> <span class="n">this</span> <span class="n">report</span> <span class="n">can</span> <span class="n">be</span> <span class="n">accessed</span><span class="o">.</span> <span class="n">Optional</span><span class="o">.</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</section>
+<p>While the first LCA is considered to be developed by Coca Cola in 1969 on beverage packaging, it was not until 1991 that the term LCA was defined, and until 1997 that the first standard for LCA methodology was developed (ISO14040). Today, this family of standards governs the principles, framework, requirements, and guidelines to perform and interpret LCAs.</p>
+<section id="basics-of-lca-calculations">
+<h2>Basics of LCA calculations<a class="headerlink" href="#basics-of-lca-calculations" title="Link to this heading">#</a></h2>
+<p>Inputs flows (such as materials and energy) and outputs (for instance, emissions or solid wastes) cause an environmental impact.</p>
+<figure>
+    <img src="../../../_static/images/environmental_impacts.png"
+         alt="environmental impacts"
+         class="content_center">
+    <figcaption>Image by: Elisa Pastor-Valles.</figcaption>
+</figure>
+<p>To calculate this environmental impact, the ISO14040 follows the following phases:</p>
+<figure>
+    <img src="../../../_static/images/LCA_phases.png"
+         alt="lca phases"
+         class="content_center">
+    <figcaption>Image by: Elisa Pastor-Valles.</figcaption>
+</figure>
+<p>Today – LCA is used in many applications: product development, marketing, production processes, waste management, companies and policy makers, research…</p>
 </section>
 </section>
 
@@ -715,11 +554,7 @@ written as a JSON file to disk. It has the following data format:</p>
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#specifying-a-functional-unit">Specifying a functional unit</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#turning-processed-data-arrays-in-matrices-building-matrices">Turning processed data arrays in matrices {#building-matrices}</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#input-and-output">Input and Output</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basics-of-lca-calculations">Basics of LCA calculations</a></li>
 </ul>
   </nav></div>
 
